@@ -14,7 +14,7 @@
 
 " General options {{{
 
-" Vimscript file settings
+" Set foldmethod to marker for Vimscript files
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
@@ -32,8 +32,8 @@ set shiftround
 
 " }}} !General options
 
-" FileType-specific settigs {{{
-" }}}
+" FileType-specific settings {{{
+" }}} !FileType-specfic settings
 
 " Mappings {{{
 
@@ -67,4 +67,4 @@ let maplocalleader = "\\"
 " }}} !Mappings
 
 " Status line {{{
-" }}}
+" }}} !Status line
