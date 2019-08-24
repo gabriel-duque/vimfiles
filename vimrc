@@ -14,12 +14,6 @@
 
 " General options {{{
 
-" Set foldmethod to marker for Vimscript files
-augroup filetype_vim
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-augroup END
-
 " Use relative line numbering but still show the current lineno
 set number
 set relativenumber
@@ -30,9 +24,25 @@ set wrap
 " Always use a multiple of 'shiftwidth' when indenting with < or >
 set shiftround
 
+" Show current command line on bottom of screen
+set showcmd
+
+" Enable filetype indentation
+filetype plugin indent on
+
+" Enable syntax highlighting
+syntax on
+
 " }}} !General options
 
 " FileType-specific settings {{{
+"
+" Set foldmethod to marker for Vimscript files
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
+
 " }}} !FileType-specfic settings
 
 " Mappings {{{
@@ -61,6 +71,11 @@ let maplocalleader = "\\"
 
 " Force myself to use the previous binding
 :inoremap <esc> <nop>
+
+" Switching to next and previous buffer
+:nnoremap <leader>n :bn<cr>
+:nnoremap <leader>p :bp<cr>
+:nnoremap <leader>d :bd<cr>
 
 " }}} !Actual mappings
 
