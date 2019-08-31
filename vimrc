@@ -67,10 +67,10 @@ let maplocalleader = "\\"
 :nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Map jk to <esc> in insert mode
-:inoremap jk <esc>
+":inoremap jk <esc>
 
 " Force myself to use the previous binding
-:inoremap <esc> <nop>
+":inoremap <esc> <nop>
 
 " Switching to next and previous buffer
 :nnoremap <leader>n :bn<cr>
@@ -83,3 +83,10 @@ let maplocalleader = "\\"
 
 " Status line {{{
 " }}} !Status line
+
+" TODO {{{
+" 
+" Status line
+" File type specific s***
+"
+" }}}
