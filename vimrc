@@ -94,8 +94,44 @@ set smartcase
 
 " }}} !General options
 
+" Functions {{{
+
+" Remove trailing whitespace in file
+function s:RemoveTrailingSpace()
+    if !&binary && &filetype != 'diff'
+        let save_cursor = getpos(".")
+        %s/\s\+$//e
+        call setpos('.', save_cursor)
+    endif
+endfunction
+
+" Remove empty lines at the end of file
+function! s:RemoveLinesEnd()
+    if !&binary && &filetype != 'diff'
+        let save_cursor = getpos(".")
+        :silent! %s#\($\n\s*\)\+\%$##
+        call setpos('.', save_cursor)
+    endif
+endfunction
+
+" Clean function for trailing whitespace and empty lines
+function! CleanFile()
+    if !&binary && &filetype != 'diff'
+        :call s:RemoveLinesEnd()
+        :call s:RemoveTrailingSpace()
+    endif
+endfunction
+
+" }}} !Functions
+
 " FileType-specific settings {{{
-"
+
+" Remove trailing whitespace and blank lines at end of source code
+augroup filetype_misc
+    autocmd!
+    autocmd BufWritePre *.py,*.c,*.cc,*.h*,*.*sh :silent! call CleanFile()<cr>
+augroup END
+
 " Set foldmethod to marker for Vimscript files
 augroup filetype_vim
     autocmd!
@@ -136,22 +172,18 @@ let maplocalleader = "\\"
 " Vertical split
 :nnoremap <leader>v :vertical split 
 
+" Clean file by removing trailing whitespace and empty lines at end of file
+:nnoremap <silent> <leader>c :call CleanFile()<cr>
+
 " }}} !Actual mappings
 
 " }}} !Mappings
-
-" Autocommands {{{
-
-" Automatically remove all trailing whitespace before writing a file
-autocmd BufWritePre *.py,*.c,*.cc,*.h,*.*sh %s/\s\+$//e
-
-" }}} !Autocommands
 
 " Status line {{{
 " }}} !Status line
 
 " TODO {{{
- 
+
 " Status line
 " File type specific s***
 " More mappings
