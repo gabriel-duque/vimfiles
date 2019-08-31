@@ -14,6 +14,8 @@
 
 " General options {{{
 
+" Display {{{
+
 " Use relative line numbering but still show the current lineno
 set number
 set relativenumber
@@ -21,17 +23,74 @@ set relativenumber
 " Wrap columns at 80 columns (only display)
 set wrap
 
-" Always use a multiple of 'shiftwidth' when indenting with < or >
-set shiftround
-
 " Show current command line on bottom of screen
 set showcmd
+
+" Don’t update screen during macro and script execution.
+set lazyredraw
+
+" Enable syntax highlighting
+syntax on
+
+" Use an encoding that supports unicode.
+set encoding=utf-8
+
+" Avoid wrapping a line in the middle of a word.
+set linebreak
+
+" The number of screen lines to keep above and below the cursor.
+set scrolloff=10
+
+" Make vertical split panes open on right side instead of left
+set splitright
+
+" Make horizontal split open below instead of on top
+set splitbelow
+
+" }}} !Display
+
+" Indentation {{{
 
 " Enable filetype indentation
 filetype plugin indent on
 
-" Enable syntax highlighting
-syntax on
+" New lines inherit the indentation of previous lines
+set autoindent
+
+" Write spaces instead of tabs
+set expandtab
+
+" When shifting lines, round the indentation to the nearest multiple
+" of “shiftwidth.”
+set shiftround
+
+" When shifting, indent using 4 spaces
+set shiftwidth=4
+
+" Insert “tabstop” number of spaces when the “tab” key is pressed.
+set smarttab
+
+" Indent using four spaces.
+set tabstop=4
+
+" }}} !Indentation
+
+" Search {{{
+
+" Enable search highlighting.
+set hlsearch
+
+" Ignore case when searching.
+set ignorecase
+
+" Incremental search that shows partial matches.
+set incsearch
+
+" Automatically switch search to case-sensitive when search query contains an
+" uppercase letter.
+set smartcase
+
+" }}} !Search
 
 " }}} !General options
 
@@ -66,27 +125,35 @@ let maplocalleader = "\\"
 " Source vimrc file
 :nnoremap <leader>sv :source $MYVIMRC<cr>
 
-" Map jk to <esc> in insert mode
-":inoremap jk <esc>
-
-" Force myself to use the previous binding
-":inoremap <esc> <nop>
-
 " Switching to next and previous buffer
 :nnoremap <leader>n :bn<cr>
 :nnoremap <leader>p :bp<cr>
 :nnoremap <leader>d :bd<cr>
 
+" Horizontal split
+:nnoremap <leader>h :split 
+
+" Vertical split
+:nnoremap <leader>v :vertical split 
+
 " }}} !Actual mappings
 
 " }}} !Mappings
+
+" Autocommands {{{
+
+" Automatically remove all trailing whitespace before writing a file
+autocmd BufWritePre *.py,*.c,*.cc,*.h,*.*sh %s/\s\+$//e
+
+" }}} !Autocommands
 
 " Status line {{{
 " }}} !Status line
 
 " TODO {{{
-" 
+ 
 " Status line
 " File type specific s***
-"
+" More mappings
+
 " }}}
