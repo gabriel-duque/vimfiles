@@ -47,6 +47,9 @@ set splitright
 " Make horizontal split open below instead of on top
 set splitbelow
 
+" Disable netrw banner
+let g:netrw_banner = 0
+
 " }}} !Display
 
 " Indentation {{{
@@ -172,8 +175,17 @@ let maplocalleader = "\\"
 " Vertical split
 :nnoremap <leader>v :vertical split 
 
+" Switch windows
+:nnoremap <leader>w <c-w>w
+
+" Close window
+:nnoremap <leader>q <c-w>q
+
 " Clean file by removing trailing whitespace and empty lines at end of file
 :nnoremap <silent> <leader>c :call CleanFile()<cr>
+
+" Open netrw
+:nnoremap <silent> <leader>o :Explore<cr>
 
 " }}} !Actual mappings
 
