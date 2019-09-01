@@ -47,6 +47,9 @@ set splitright
 " Make horizontal split open below instead of on top
 set splitbelow
 
+" Set colorcolumn color to very light grey
+highlight ColorColumn ctermbg=7
+
 " Disable netrw banner
 let g:netrw_banner = 0
 
@@ -133,6 +136,7 @@ endfunction
 augroup filetype_misc
     autocmd!
     autocmd BufWritePre *.py,*.c,*.cc,*.h*,*.*sh :silent! call CleanFile()<cr>
+    autocmd FileType c,cpp,python,sh,vim setlocal colorcolumn=80
 augroup END
 
 " Set foldmethod to marker for Vimscript files
@@ -170,10 +174,10 @@ let maplocalleader = "\\"
 :nnoremap <leader>d :bd<cr>
 
 " Horizontal split
-:nnoremap <leader>h :split 
+:nnoremap <leader>h :split<space>
 
 " Vertical split
-:nnoremap <leader>v :vertical split 
+:nnoremap <leader>v :vertical split<space>
 
 " Switch windows
 :nnoremap <leader>w <c-w>w
